@@ -1,0 +1,53 @@
+:root {
+  --bg-img: url("https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg");
+  --black-bg: rgba(0, 0, 0, 0.8);
+  --heading-ff: 'Poller One', cursive;
+  --main-ff: 'Trispace', sans-serif;
+  --yellow: #FFE81F;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  background: var(--bg-img);
+  color: white;
+  font-family: var(--main-ff);
+  font-size: 1.175rem;
+  letter-spacing: 1.5px;
+  line-height: 1.25;
+  /*stops white space on scroll*/
+  height: 100vh;
+  overflow: scroll;
+  /* */
+  padding: 0 1em;
+  text-align: center;
+}
+
+html{
+  /*stops white space on scroll*/
+  overflow: hidden;
+}
+
+h1 {
+  color: var(--yellow);
+  font-family: var(--heading-ff);
+  font-size: 4rem;
+  letter-spacing: 3.5px;
+  margin: 1em;
+  text-decoration: underline;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.app {
+  max-width: 900px;
+  margin: auto;
+}
