@@ -78,3 +78,14 @@ test('App renders a header div containing a h1 with text "Star Wars"', () => {
 	expect(actualHeader).toContainElement(actualH1);
 	expect(actualH1).toBeInTheDocument();
 });
+
+test('App renders a footer containing a link to the api', () => {
+	const { getByTestId } = render(<App />);
+
+	const actual = getByTestId('footer');
+	const link = getByTestId("api-link");
+	
+	expect(actual).toBeInTheDocument();
+	expect(actual).toContainElement(link);
+	expect(link).toHaveAttribute("href", "https://swapi.dev/api/");
+})

@@ -24,8 +24,7 @@ function App() {
 		intialState
 	);
 
-	useEffect( () => getCharacters(search),[ search ]
-	);
+	useEffect(() => getCharacters(search), [ search ]);
 
 	async function getCharacters(search) {
 		const response = await fetch(
@@ -36,13 +35,13 @@ function App() {
 		dispatch({ type: 'LOAD_CHARACTERS', payload: data.results });
 	}
 
-
 	return (
 		<div className='app' data-testid='app'>
 			<div className='header' data-testid='app-header'>
 				<h1>Star Wars</h1>
 			</div>
-			<Input data-testid='input'
+			<Input
+				data-testid='input'
 				onChange={(event) =>
 					dispatch({
 						type    : 'SEARCH_CHARACTERS',
@@ -51,6 +50,17 @@ function App() {
 				search={search}
 			/>
 			<CardContainer data-testid='card-container' data={characters} />
+			<footer data-testid='footer'>
+				Made using: <a
+					href='https://swapi.dev'
+					target="_blank"
+					rel="noreferrer noopener"
+					className='api-link'
+					data-testid='api-link'
+				>
+					https://swapi.dev
+				</a>
+			</footer>
 		</div>
 	);
 }

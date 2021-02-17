@@ -51,3 +51,20 @@ input {
   max-width: 900px;
   margin: auto;
 }
+
+footer {
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  margin-left: auto;
+  padding: .7em;
+  width: max-content;
+}
+
+.api-link{
+  color: inherit;
+  text-decoration: inherit;
+}
+.api-link:hover{
+  color: var(--yellow);
+}
