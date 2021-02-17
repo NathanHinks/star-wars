@@ -7,4 +7,4 @@ This project created with [Create React App](https://github.com/facebook/create-
 - useReduce hook
 - Getting and displaying data from APIs
 - React components
-- Deploying sites to Netlify () 
+- Deploying sites to Netlify (star-wars-react-practise.netlify.app) 
