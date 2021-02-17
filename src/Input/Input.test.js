@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Input from './';
 
 const testProps = {
@@ -43,6 +43,5 @@ test('When given a onChange function prop, Input will render an input who fires 
 
 	fireEvent.change(actual, { target: { value: 'test' } });
 
-    expect(testProps.onChange).toHaveBeenCalled();
-
+	expect(testProps.onChange).toHaveBeenCalled();
 });
