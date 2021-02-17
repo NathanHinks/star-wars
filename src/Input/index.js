@@ -1,11 +1,15 @@
-import { useState } from "react";
-import "./Input.css"
-function Input({onChange}) {
-    return (
-        <div className="input-container">
-            <input type="text" onChange={onChange} placeholder="Search for a character"></input>
-        </div>
-    )
+import './Input.css';
+function Input({ onChange, search }) {
+	return (
+		<div className='input-container'>
+			<input
+				type='text'
+				onChange={onChange}
+				value={search}
+				placeholder='Search for a character'
+			/>
+		</div>
+	);
 }
 
 export default Input;
