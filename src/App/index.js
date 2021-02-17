@@ -27,8 +27,7 @@ function App() {
 	useEffect(() => getCharacters(search), [ search ]);
 
 	async function getCharacters(search) {
-		const response = await fetch(
-			`${process.env.REACT_APP_API_URL}${search}`
+		const response = await fetch(process.env.REACT_APP_API_URL + `${search}`
 		);
 		const data = await response.json();
 
