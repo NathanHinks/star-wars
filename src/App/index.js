@@ -24,37 +24,35 @@ function App() {
 		intialState
 	);
 
-	useEffect(
-		() => {
-			async function getCharacters() {
-				const response = await fetch(
-					`https://swapi.dev/api/people?search=${search}`
-				);
-				const data = await response.json();
-
-				dispatch({ type: 'LOAD_CHARACTERS', payload: data.results });
-			}
-			getCharacters();
-		},
-		[ search ]
+	useEffect( () => getCharacters(search),[ search ]
 	);
 
+	async function getCharacters(search) {
+		const response = await fetch(
+			`${process.env.REACT_APP_API_URL}${search}`
+		);
+		const data = await response.json();
+
+		dispatch({ type: 'LOAD_CHARACTERS', payload: data.results });
+	}
+
+
 	return (
-		<div className='app'>
-			<div className='header'>
+		<div className='app' data-testid='app'>
+			<div className='header' data-testid='app-header'>
 				<h1>Star Wars</h1>
 			</div>
-			<Input
+			<Input data-testid='input'
 				onChange={(event) =>
 					dispatch({
-						type: 'SEARCH_CHARACTERS',
-						payload: event.target.value,
+						type    : 'SEARCH_CHARACTERS',
+						payload : event.target.value,
 					})}
 				search={search}
 			/>
-			<CardContainer data={characters} />
+			<CardContainer data-testid='card-container' data={characters} />
 		</div>
 	);
 }
 
-export default App;
+export { App, appReducer };
