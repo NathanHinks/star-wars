@@ -1,23 +1,38 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import Input from '../Input';
+import { useEffect, useReducer } from 'react';
 import CardContainer from '../CardContainer';
+import Input from '../Input';
+import './App.css';
+
+const intialState = { characters: [], search: '' };
+
+function appReducer(state, action) {
+	const { payload, type } = action;
+
+	switch (type) {
+		case 'LOAD_CHARACTERS':
+			return { ...state, characters: payload };
+		case 'SEARCH_CHARACTERS':
+			return { ...state, search: payload };
+		default:
+			return state;
+	}
+}
 
 function App() {
-	const [ characters, setCharacters ] = useState([]);
-	const [ search, setSearch ] = useState('');
-
-	function onChange(e) {
-		setSearch(e.target.value);
-	}
+	const [ { characters, search }, dispatch ] = useReducer(
+		appReducer,
+		intialState
+	);
 
 	useEffect(
 		() => {
 			async function getCharacters() {
-				const response = await fetch(`https://swapi.dev/api/people?search=${search}`);
+				const response = await fetch(
+					`https://swapi.dev/api/people?search=${search}`
+				);
 				const data = await response.json();
 
-				setCharacters(data.results);
+				dispatch({ type: 'LOAD_CHARACTERS', payload: data.results });
 			}
 			getCharacters();
 		},
@@ -29,7 +44,14 @@ function App() {
 			<div className='header'>
 				<h1>Star Wars</h1>
 			</div>
-			<Input onChange={onChange} search={search}/>
+			<Input
+				onChange={(event) =>
+					dispatch({
+						type: 'SEARCH_CHARACTERS',
+						payload: event.target.value,
+					})}
+				search={search}
+			/>
 			<CardContainer data={characters} />
 		</div>
 	);
